@@ -1,0 +1,26 @@
+{
+  "name" : "HB",
+  "preName" : "",
+  "comment" : null,
+  "templateGroupName" : "Default",
+  "fullColumn" : [ {
+    "name" : "id",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "helpB",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.suzhou.huanzhi",
+  "savePath" : "./src/main/java/com/suzhou/huanzhi",
+  "saveModelName" : "huanzhi"
+}

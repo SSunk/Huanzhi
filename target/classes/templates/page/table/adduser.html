@@ -1,0 +1,102 @@
+adduser.html<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" id="username" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" id="password" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择部门</label>
+        <div class="layui-input-block">
+            <select id="bumen" name="bumen1" lay-filter="selFilter">
+                <option th:each="list1:${typeList1}" th:value="${list1.id}" th:text="${list1.manageName }"></option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认修改</button>
+        </div>
+    </div>
+    <input type="hidden" id="temp_id">
+
+
+</div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form','laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#close_time' //指定元素
+        });
+
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var index = layer.alert(JSON.stringify("更新成功"), {
+                title: '最终的提交信息'
+            }, function () {
+
+                var data= {
+                    "id": $("#temp_id").val(),
+                    "email": $("#username").val(),
+                    "password":$("#password").val(),
+                    "roleee": $("#bumen").val()
+                }
+                $.ajax({
+                    url:"/admin/update_user",
+                    type:"POST",
+                    data:data,
+                    success:function(res){
+                        alert(res);
+                    }
+                })
+                // 关闭弹出层
+                setTimeout(function(){
+                    top.layer.close(index);
+                    top.layer.msg("修改成功");
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                },500);
+
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

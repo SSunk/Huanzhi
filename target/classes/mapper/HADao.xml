@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suzhou.huanzhi.dao.HADao">
+
+    <resultMap type="com.suzhou.huanzhi.entity.HA" id="HAMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="helpA" column="help_A" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HAMap">
+        select
+          id, help_A
+        from suzhou.h_a
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HAMap">
+        select
+          id, help_A
+        from suzhou.h_a
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HAMap">
+        select
+        id, help_A
+        from suzhou.h_a
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="helpA != null and helpA != ''">
+                and help_A = #{helpA}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into suzhou.h_a(help_A)
+        values (#{helpA})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update suzhou.h_a
+        <set>
+            <if test="helpA != null and helpA != ''">
+                help_A = #{helpA},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from suzhou.h_a where id = #{id}
+    </delete>
+
+</mapper>

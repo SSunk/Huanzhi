@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">合同号</label>
+        <div class="layui-input-block">
+            <input type="text" id="hetonghao" lay-reqtext="合同号不能为空" placeholder="请输入合同号" value="" class="layui-input">
+            <tip>填写合同号。</tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">甲方</label>
+        <div class="layui-input-block">
+            <input type="text" id="jiafang" lay-reqtext="甲方不能为空" placeholder="请输入甲方" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择乙方</label>
+        <div class="layui-input-block">
+            <select id="yifang" name="yifang1" lay-filter="selFilter">
+                <option th:each="list1:${listA}" th:value="${list1.id}" th:text="${list1.helpA }"></option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择项目</label>
+        <div class="layui-input-block">
+            <select id="item" name="jiafang1" lay-filter="selFilter">
+                <option th:each="list1:${listB}" th:value="${list1.id}" th:text="${list1.helpB }"></option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">新/老</label>
+        <div class="layui-input-block">
+            <input type="radio" name="age" value="新" title="新" checked="checked">
+            <input type="radio" name="age" value="老" title="老">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">签订人</label>
+        <div class="layui-input-block">
+            <input type="text" id="people" placeholder="请输入签订人" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">跟进人</label>
+        <div class="layui-input-block">
+            <input type="text" id="foller" placeholder="请输入跟进人" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">合同金额</label>
+        <div class="layui-input-block">
+            <input type="text" id="cost" placeholder="请输入合同金额" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">协作方</label>
+        <div class="layui-input-block">
+            <input type="text" id="helpComp" placeholder="请输入协作方" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">关闭时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="closeTime"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">检测预计采样</label>
+        <div class="layui-input-block">
+            <input type="text" id="yujiCaiyang"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">检测采样日期</label>
+        <div class="layui-input-block">
+            <input type="text" id="getData"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">体检预计日期</label>
+        <div class="layui-input-block">
+            <input type="text" id="prospTime"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">体检安排日期</label>
+        <div class="layui-input-block">
+            <input type="text" id="arrayDate"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">体检方式</label>
+        <div class="layui-input-block">
+            <input type="text" id="bodyType"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">人数</label>
+        <div class="layui-input-block">
+            <input type="text" id="personNum"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">协作金额</label>
+        <div class="layui-input-block">
+            <input type="text" id="helpMoney"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">检测</label>
+        <div class="layui-input-block">
+            <input type="text" id="checkTime"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">体检</label>
+        <div class="layui-input-block">
+            <input type="text" id="bodyCheck"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">咨询评价</label>
+        <div class="layui-input-block">
+            <input type="text" id="comment"  value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务</label>
+        <div class="layui-input-block">
+            <input type="text" id="service"  value="" class="layui-input">
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+    <input type="hidden" id="temp_id">
+
+
+</div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form','laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#closeTime' //指定元素
+        });
+
+        laydate.render({
+            elem: '#prospTime' //指定元素
+        });
+
+        laydate.render({
+            elem: '#yujiCaiyang' //指定元素
+        });
+
+        laydate.render({
+            elem: '#getData' //指定元素
+        });
+
+        laydate.render({
+            elem: '#arrayDate' //指定元素
+        });
+
+        laydate.render({
+            elem: '#checkTime' //指定元素
+        });
+
+        laydate.render({
+            elem: '#bodyCheck' //指定元素
+        });
+
+
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var index = layer.alert(JSON.stringify("更新成功"), {
+                title: '最终的提交信息'
+            }, function () {
+
+                var data= {
+                    "id": $("#temp_id").val(),
+                    "contractNum": $("#hetonghao").val(),
+                    "partA": $("#jiafang").val(),
+                    "partB": $("#yifang").val(),
+                    "oldOrNew": $("input[name='age']:checked").val(),
+                    "item": $("#item").val(),
+                    "closeTime":$("#closeTime").val(),
+                    "orderName": $("#people").val(),
+                    "itemStatus": $("#itemStatus").val(),
+                    "followName":$("#foller").val(),
+                    "contractCost":$("#cost").val(),
+                    "helpComp":$("#helpComp").val(),
+                    "calXiaohua":$("#yujiCaiyang").val(),
+                    "getDate":$("#getData").val(),
+                    "needTime":$("#prospTime").val(),
+                    "bodyCheckTime":$("#arrayDate").val(),
+                    "bodyType":$("#bodyType").val(),
+                    "personNum":$("#personNum").val(),
+                    "helpMoney":$("#helpMoney").val(),
+                    "checkTime":$("#checkTime").val(),
+                    "bodyCheck":$("#bodyCheck").val(),
+                    "comment":$("#comment").val(),
+                    "service":$("#service").val(),
+                }
+                $.ajax({
+                    url:"/admin/post_zk",
+                    type:"POST",
+                    data:data,
+                    success:function(res){
+
+                    }
+                })
+                // 关闭弹出层
+                setTimeout(function(){
+                    top.layer.close(index);
+                    top.layer.msg("修改成功");
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                },500);
+
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

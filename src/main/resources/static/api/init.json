@@ -1,0 +1,92 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "/page/welcome-1.html?t=1"
+  },
+  "logoInfo": {
+    "title": "环安健能",
+    "image": "/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "合同列表",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "合同登记",
+              "href": "/admin/add",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "财务表单",
+              "href": "/page/table.html",
+              "icon": "fa fa-usd",
+              "target": "_self"
+            },
+            {
+              "title": "战资中心",
+              "href": "/page/table2.html",
+              "icon": "fa fa-sitemap",
+              "target": "_self"
+            },
+            {
+              "title": "质控室",
+              "href": "/page/table3.html",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            }]
+        },
+        {
+          "title": "人事管理",
+          "href": "",
+          "icon": "fa fa-institution",
+          "target": "_self",
+          "child": [
+            {
+              "title": "部门管理",
+              "href": "/page/manage.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "用户管理",
+              "href": "/page/user.html",
+              "icon": "fa fa-user",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "合作商管理",
+          "href": "",
+          "icon": "fa fa-suitcase",
+          "target": "_self",
+          "child": [
+            {
+              "title": "项目管理",
+              "href": "/page/H_A.html",
+              "icon": "fa fa-user-secret",
+              "target": "_self"
+            },
+            {
+              "title": "乙方管理",
+              "href": "/page/H_B.html",
+              "icon": "fa fa-user-secret",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

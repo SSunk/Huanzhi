@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suzhou.huanzhi.dao.UserDao">
+
+    <resultMap type="com.suzhou.huanzhi.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="roleee" column="roleee" jdbcType="VARCHAR"/>
+        <result property="roleee2" column="roleee2" jdbcType="VARCHAR"/>
+        <result property="manageName" column="manage_name" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select
+          id, email, password, roleee
+        from suzhou.user
+        where id = #{id}
+    </select>
+
+    <select id="queryByName" resultMap="UserMap">
+        select
+          id, email, password, roleee
+        from suzhou.user
+        where email = #{email}
+    </select>
+
+    <select id="queryRole" parameterType="java.lang.String" resultType="String">
+        select
+          roleee
+        from suzhou.user
+        where email = #{email}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+          id, email, password, roleee
+        from suzhou.user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+        user.id, email, roleee,roleee2,manage_name
+        from suzhou.user,suzhou.manage
+       where `user`.roleee = manage.id
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into suzhou.user(email, password, roleee,roleee2)
+        values (#{email}, #{password}, #{roleee},#{roleee2})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update suzhou.user
+        <set>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="roleee != null">
+                roleee = #{roleee},
+            </if>
+            <if test="roleee2 != null">
+                roleee2 = #{roleee2},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from suzhou.user where id = #{id}
+    </delete>
+
+</mapper>

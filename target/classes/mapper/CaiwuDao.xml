@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suzhou.huanzhi.dao.CaiwuDao">
+
+    <resultMap type="com.suzhou.huanzhi.entity.Caiwu" id="CaiwuMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="contractNum" column="contract_num" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen1" column="already_open1" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen2" column="already_open2" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen3" column="already_open3" jdbcType="VARCHAR"/>
+        <result property="notOpen" column="not_open" jdbcType="VARCHAR"/>
+        <result property="getMon1" column="get_mon1" jdbcType="VARCHAR"/>
+        <result property="getMon2" column="get_mon2" jdbcType="VARCHAR"/>
+        <result property="getMon3" column="get_mon3" jdbcType="VARCHAR"/>
+        <result property="notGet" column="not_get" jdbcType="VARCHAR"/>
+        <result property="helpMoney" column="help_money" jdbcType="VARCHAR"/>
+        <result property="helpTicket" column="help_ticket" jdbcType="VARCHAR"/>
+        <result property="helpPay" column="help_pay" jdbcType="VARCHAR"/>
+        <result property="checkPay" column="check_pay" jdbcType="VARCHAR"/>
+        <result property="professCost" column="profess_cost" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="com.suzhou.huanzhi.entity.All_Info" id="AllInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="contractNum" column="contract_num" jdbcType="VARCHAR"/>
+        <result property="helpA" column="help_a" jdbcType="VARCHAR"/>
+        <result property="helpB" column="help_b" jdbcType="VARCHAR"/>
+        <result property="partA" column="part_a" jdbcType="VARCHAR"/>
+        <result property="partB" column="part_b" jdbcType="VARCHAR"/>
+        <result property="oldOrNew" column="old_or_new" jdbcType="VARCHAR"/>
+        <result property="item" column="item" jdbcType="VARCHAR"/>
+        <result property="orderName" column="order_name" jdbcType="VARCHAR"/>
+        <result property="followName" column="follow_name" jdbcType="VARCHAR"/>
+        <result property="contractCost" column="contract_cost" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen1" column="already_open1" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen2" column="already_open2" jdbcType="VARCHAR"/>
+        <result property="alreadyOpen3" column="already_open3" jdbcType="VARCHAR"/>
+        <result property="notOpen" column="not_open" jdbcType="VARCHAR"/>
+        <result property="getMon1" column="get_mon1" jdbcType="VARCHAR"/>
+        <result property="getMon2" column="get_mon2" jdbcType="VARCHAR"/>
+        <result property="getMon3" column="get_mon3" jdbcType="VARCHAR"/>
+        <result property="notGet" column="not_get" jdbcType="VARCHAR"/>
+        <result property="helpMoney" column="help_money" jdbcType="VARCHAR"/>
+        <result property="helpTicket" column="help_ticket" jdbcType="VARCHAR"/>
+        <result property="helpPay" column="help_pay" jdbcType="VARCHAR"/>
+        <result property="checkPay" column="check_pay" jdbcType="VARCHAR"/>
+        <result property="professCost" column="profess_cost" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="VARCHAR"/>
+        <result property="bodyCheck" column="body_check" jdbcType="VARCHAR"/>
+        <result property="comment" column="comment" jdbcType="VARCHAR"/>
+        <result property="service" column="service" jdbcType="VARCHAR"/>
+        <result property="helpComp" column="help_comp" jdbcType="VARCHAR"/>
+        <result property="needTime" column="need_time" jdbcType="VARCHAR"/>
+        <result property="closeTime" column="close_time" jdbcType="VARCHAR"/>
+        <result property="calXiaohua" column="cal_xiaohua" jdbcType="VARCHAR"/>
+        <result property="getDate" column="get_date" jdbcType="VARCHAR"/>
+        <result property="yujiCaiyang" column="yuji_caiyang" jdbcType="VARCHAR"/>
+        <result property="prospTime" column="prosp_time" jdbcType="VARCHAR"/>
+        <result property="bodyCheckTime" column="body_check_time" jdbcType="VARCHAR"/>
+        <result property="bodyType" column="body_type" jdbcType="VARCHAR"/>
+        <result property="personNum" column="person_num" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CaiwuMap">
+        select
+          id, contract_num, already_open1, already_open2, already_open3, not_open, get_mon1, get_mon2, get_mon3, not_get, help_money, help_ticket, help_pay, check_pay, profess_cost
+        from suzhou.caiwu
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CaiwuMap">
+        select
+          id, contract_num, already_open1, already_open2, already_open3, not_open, get_mon1, get_mon2, get_mon3, not_get, help_money, help_ticket, help_pay, check_pay, profess_cost
+        from suzhou.caiwu
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AllInfoMap">
+     SELECT a.id,a.contract_num ,part_a,part_b,help_a,old_or_new,help_b,item,order_name,follow_name,contract_cost,already_open1,already_open2,already_open3
+,get_mon1,get_mon2,get_mon3,not_get,help_money,help_ticket,help_pay,check_pay,profess_cost,check_time,body_check,`comment`,service, help_comp,need_time,close_time,cal_xiaohua,get_date,yuji_caiyang,prosp_time,body_check_time, body_type,person_num,not_open FROM base_contract as a,caiwu as b,result as c,support as d,h_a as e,h_b as f
+WHERE a.contract_num=b.contract_num and a.contract_num = c.contract_num and a.contract_num=d.contract_num and part_b = e.id and item = f.id
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into suzhou.caiwu(contract_num, already_open1, already_open2, already_open3, not_open, get_mon1, get_mon2, get_mon3, not_get, help_money, help_ticket, help_pay, check_pay, profess_cost)
+        values (#{contractNum}, #{alreadyOpen1}, #{alreadyOpen2}, #{alreadyOpen3}, #{notOpen}, #{getMon1}, #{getMon2}, #{getMon3}, #{notGet}, #{helpMoney}, #{helpTicket}, #{helpPay}, #{checkPay}, #{professCost})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update suzhou.caiwu
+        <set>
+            <if test="contractNum != null and contractNum != ''">
+                contract_num = #{contractNum},
+            </if>
+            <if test="alreadyOpen1 != null">
+                already_open1 = #{alreadyOpen1},
+            </if>
+            <if test="alreadyOpen2 != null">
+                already_open2 = #{alreadyOpen2},
+            </if>
+            <if test="alreadyOpen3 != null">
+                already_open3 = #{alreadyOpen3},
+            </if>
+            <if test="notOpen != null">
+                not_open = #{notOpen},
+            </if>
+            <if test="getMon1 != null">
+                get_mon1 = #{getMon1},
+            </if>
+            <if test="getMon2 != null">
+                get_mon2 = #{getMon2},
+            </if>
+            <if test="getMon3 != null">
+                get_mon3 = #{getMon3},
+            </if>
+            <if test="notGet != null">
+                not_get = #{notGet},
+            </if>
+            <if test="helpMoney != null">
+                help_money = #{helpMoney},
+            </if>
+            <if test="helpTicket != null">
+                help_ticket = #{helpTicket},
+            </if>
+            <if test="helpPay != null">
+                help_pay = #{helpPay},
+            </if>
+            <if test="checkPay != null">
+                check_pay = #{checkPay},
+            </if>
+            <if test="professCost != null">
+                profess_cost = #{professCost},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from suzhou.caiwu where id = #{id}
+    </delete>
+
+</mapper>
