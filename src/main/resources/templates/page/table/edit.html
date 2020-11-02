@@ -210,36 +210,52 @@
             elem: '#close_time' //指定元素
         });
 
-        $("#already_open1").blur(function (){
+        $("#already_open3").blur(function (){
             var hetong = $("#cost").val();
-            var alop = $("#already_open1").val();
-            if(hetong==""){
-                alert("合同金额不能为空！");
-            }
-            else if(alop==""){
+            var alop1 = $("#already_open1").val();
+            var alop2 = $("#already_open2").val();
+            var alop3 = $("#already_open3").val();
+            if(alop1==""){
                 alert("已开1不能为空");
             }
-            else{
-                hetong = parseFloat(hetong);
-                alop = parseFloat(alop);
-                $("#not_open").val(hetong-alop);
+            else if(alop2==""){
+                alert("已开2不能为空");
             }
+            else if(alop3==""){
+                alert("已开3不能为空");
+            }
+            hetong = parseFloat(hetong);
+            alop1 = parseFloat(alop1);
+            alop2 = parseFloat(alop2);
+            alop3 = parseFloat(alop3);
+            $("#not_open").val(hetong-alop1-alop2-alop3);
+
 
         });
 
-        $("#get_mon1").blur(function (){
+        $("#get_mon3").blur(function (){
             var hetong = $("#cost").val();
-            var alarr = $("#get_mon1").val();
+            var alarr1 = $("#get_mon1").val();
+            var alarr2 = $("#get_mon2").val();
+            var alarr3 = $("#get_mon3").val();
             if(hetong==""){
                 alert("合同金额不能为空！");
             }
-            else if(alarr==""){
+            else if(alarr1==""){
                 alert("到账1不能为空");
+            }
+            else if(alarr2==""){
+                alert("到账2不能为空");
+            }
+            else if(alarr3==""){
+                alert("到账3不能为空");
             }
             else{
                 hetong = parseFloat(hetong);
-                alarr = parseFloat(alarr);
-                $("#not_get").val(hetong-alarr);
+                alarr1 = parseFloat(alarr1);
+                alarr2 = parseFloat(alarr2);
+                alarr3 = parseFloat(alarr3);
+                $("#not_get").val(hetong-alarr1-alarr2-alarr3);
             }
 
         })
